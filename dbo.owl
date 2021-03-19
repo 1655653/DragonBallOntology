@@ -1,0 +1,315 @@
+Prefix(:=<http://www.semanticweb.org/theta/ontologies/2021/0/dragonball-ontology-17#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.semanticweb.org/theta/ontologies/2021/0/dragonball-ontology-17>
+
+Declaration(Class(:alien))
+Declaration(Class(:android))
+Declaration(Class(:fighting_technique))
+Declaration(Class(:gender))
+Declaration(Class(:human))
+Declaration(Class(:long_distance))
+Declaration(Class(:nameccian))
+Declaration(Class(:planet))
+Declaration(Class(:power_up))
+Declaration(Class(:race))
+Declaration(Class(:sayan))
+Declaration(Class(:short_distance))
+Declaration(ObjectProperty(:born_in))
+Declaration(ObjectProperty(:enemy_of))
+Declaration(ObjectProperty(:father_of))
+Declaration(ObjectProperty(:fights_with))
+Declaration(ObjectProperty(:has_father))
+Declaration(ObjectProperty(:has_gender))
+Declaration(ObjectProperty(:has_mother))
+Declaration(ObjectProperty(:has_parent))
+Declaration(ObjectProperty(:married_with))
+Declaration(ObjectProperty(:mother_of))
+Declaration(ObjectProperty(:parent_of))
+Declaration(ObjectProperty(:sayan_fights_with))
+Declaration(DataProperty(:has_child))
+Declaration(DataProperty(:has_trasformation))
+Declaration(NamedIndividual(:beam_cannon))
+Declaration(NamedIndividual(:bulma))
+Declaration(NamedIndividual(:c18))
+Declaration(NamedIndividual(:chichi))
+Declaration(NamedIndividual(:crillin))
+Declaration(NamedIndividual(:earth))
+Declaration(NamedIndividual(:female))
+Declaration(NamedIndividual(:finger_laser))
+Declaration(NamedIndividual(:frieza))
+Declaration(NamedIndividual(:goten))
+Declaration(NamedIndividual(:kamehameha))
+Declaration(NamedIndividual(:male))
+Declaration(NamedIndividual(:marron))
+Declaration(NamedIndividual(:martial_arts))
+Declaration(NamedIndividual(:namec))
+Declaration(NamedIndividual(:piccolo))
+Declaration(NamedIndividual(:super_sayan))
+Declaration(NamedIndividual(:suprem))
+Declaration(NamedIndividual(:vegeta))
+Declaration(NamedIndividual(:vegeta_pl))
+Declaration(NamedIndividual(:vegeta_senior))
+############################
+#   Object Properties
+############################
+
+# Object Property: :born_in (:born_in)
+
+FunctionalObjectProperty(:born_in)
+ObjectPropertyDomain(:born_in :race)
+ObjectPropertyRange(:born_in :planet)
+
+# Object Property: :enemy_of (:enemy_of)
+
+SymmetricObjectProperty(:enemy_of)
+IrreflexiveObjectProperty(:enemy_of)
+
+# Object Property: :father_of (:father_of)
+
+SubObjectPropertyOf(:father_of :parent_of)
+ObjectPropertyRange(:father_of :race)
+
+# Object Property: :fights_with (:fights_with)
+
+AsymmetricObjectProperty(:fights_with)
+ObjectPropertyDomain(:fights_with :race)
+ObjectPropertyRange(:fights_with :fighting_technique)
+
+# Object Property: :has_father (:has_father)
+
+SubObjectPropertyOf(:has_father :has_parent)
+InverseFunctionalObjectProperty(:has_father)
+
+# Object Property: :has_gender (:has_gender)
+
+SubObjectPropertyOf(:has_gender owl:topObjectProperty)
+FunctionalObjectProperty(:has_gender)
+ObjectPropertyDomain(:has_gender :race)
+ObjectPropertyRange(:has_gender :gender)
+
+# Object Property: :has_mother (:has_mother)
+
+SubObjectPropertyOf(:has_mother :has_parent)
+InverseFunctionalObjectProperty(:has_mother)
+
+# Object Property: :married_with (:married_with)
+
+SymmetricObjectProperty(:married_with)
+IrreflexiveObjectProperty(:married_with)
+ObjectPropertyDomain(:married_with :race)
+ObjectPropertyRange(:married_with :race)
+
+# Object Property: :mother_of (:mother_of)
+
+SubObjectPropertyOf(:mother_of :parent_of)
+ObjectPropertyRange(:mother_of :race)
+
+# Object Property: :sayan_fights_with (:sayan_fights_with)
+
+SubObjectPropertyOf(:sayan_fights_with :fights_with)
+ObjectPropertyDomain(:sayan_fights_with :sayan)
+ObjectPropertyRange(:sayan_fights_with :power_up)
+
+
+############################
+#   Data Properties
+############################
+
+# Data Property: :has_child (:has_child)
+
+DataPropertyDomain(:has_child :race)
+DataPropertyRange(:has_child xsd:integer)
+
+# Data Property: :has_trasformation (:has_trasformation)
+
+DataPropertyDomain(:has_trasformation :race)
+DataPropertyRange(:has_trasformation xsd:integer)
+
+
+
+############################
+#   Classes
+############################
+
+# Class: :alien (:alien)
+
+SubClassOf(:alien :race)
+
+# Class: :android (:android)
+
+SubClassOf(:android :race)
+
+# Class: :human (:human)
+
+SubClassOf(:human :race)
+
+# Class: :long_distance (:long_distance)
+
+SubClassOf(:long_distance :fighting_technique)
+DisjointClasses(:long_distance :short_distance)
+
+# Class: :nameccian (:nameccian)
+
+SubClassOf(:nameccian :race)
+
+# Class: :power_up (:power_up)
+
+SubClassOf(:power_up :fighting_technique)
+
+# Class: :race (:race)
+
+SubClassOf(:race ObjectExactCardinality(1 :has_gender :gender))
+
+# Class: :sayan (:sayan)
+
+SubClassOf(:sayan :race)
+
+# Class: :short_distance (:short_distance)
+
+SubClassOf(:short_distance :fighting_technique)
+
+
+############################
+#   Named Individuals
+############################
+
+# Individual: :beam_cannon (:beam_cannon)
+
+ClassAssertion(:long_distance :beam_cannon)
+
+# Individual: :bulma (:bulma)
+
+ClassAssertion(:human :bulma)
+ObjectPropertyAssertion(:born_in :bulma :earth)
+ObjectPropertyAssertion(:has_gender :bulma :female)
+
+# Individual: :c18 (:c18)
+
+ClassAssertion(:android :c18)
+ObjectPropertyAssertion(:fights_with :c18 :martial_arts)
+ObjectPropertyAssertion(:has_gender :c18 :female)
+ObjectPropertyAssertion(:married_with :c18 :crillin)
+ObjectPropertyAssertion(:mother_of :c18 :marron)
+
+# Individual: :chichi (:chichi)
+
+ClassAssertion(:human :chichi)
+ObjectPropertyAssertion(:born_in :chichi :earth)
+ObjectPropertyAssertion(:fights_with :chichi :martial_arts)
+ObjectPropertyAssertion(:has_gender :chichi :female)
+ObjectPropertyAssertion(:mother_of :chichi :goten)
+
+# Individual: :crillin (:crillin)
+
+ClassAssertion(:human :crillin)
+ObjectPropertyAssertion(:born_in :crillin :earth)
+ObjectPropertyAssertion(:father_of :crillin :marron)
+ObjectPropertyAssertion(:fights_with :crillin :martial_arts)
+ObjectPropertyAssertion(:has_gender :crillin :male)
+ObjectPropertyAssertion(:married_with :crillin :c18)
+DataPropertyAssertion(:has_child :crillin "1"^^xsd:integer)
+
+# Individual: :earth (:earth)
+
+ClassAssertion(:planet :earth)
+
+# Individual: :female (:female)
+
+ClassAssertion(:gender :female)
+
+# Individual: :finger_laser (:finger_laser)
+
+ClassAssertion(:long_distance :finger_laser)
+
+# Individual: :frieza (:frieza)
+
+ClassAssertion(:alien :frieza)
+ObjectPropertyAssertion(:enemy_of :frieza :vegeta)
+ObjectPropertyAssertion(:enemy_of :frieza :vegeta_senior)
+
+# Individual: :goten (:goten)
+
+ClassAssertion(:human :goten)
+ObjectPropertyAssertion(:born_in :goten :earth)
+ObjectPropertyAssertion(:fights_with :goten :kamehameha)
+ObjectPropertyAssertion(:fights_with :goten :martial_arts)
+ObjectPropertyAssertion(:has_gender :goten :male)
+ObjectPropertyAssertion(:has_mother :goten :chichi)
+DataPropertyAssertion(:has_trasformation :goten "2"^^xsd:integer)
+
+# Individual: :kamehameha (:kamehameha)
+
+ClassAssertion(:long_distance :kamehameha)
+
+# Individual: :male (:male)
+
+ClassAssertion(:gender :male)
+
+# Individual: :marron (:marron)
+
+ClassAssertion(:human :marron)
+ObjectPropertyAssertion(:born_in :marron :earth)
+ObjectPropertyAssertion(:has_father :marron :crillin)
+ObjectPropertyAssertion(:has_gender :marron :female)
+ObjectPropertyAssertion(:has_mother :marron :c18)
+
+# Individual: :martial_arts (:martial_arts)
+
+ClassAssertion(:short_distance :martial_arts)
+
+# Individual: :namec (:namec)
+
+ClassAssertion(:planet :namec)
+
+# Individual: :piccolo (:piccolo)
+
+ClassAssertion(:nameccian :piccolo)
+ObjectPropertyAssertion(:born_in :piccolo :namec)
+ObjectPropertyAssertion(:fights_with :piccolo :beam_cannon)
+ObjectPropertyAssertion(:fights_with :piccolo :martial_arts)
+ObjectPropertyAssertion(:has_gender :piccolo :male)
+
+# Individual: :super_sayan (:super_sayan)
+
+ClassAssertion(:power_up :super_sayan)
+
+# Individual: :suprem (:suprem)
+
+ClassAssertion(:nameccian :suprem)
+ObjectPropertyAssertion(:born_in :suprem :namec)
+ObjectPropertyAssertion(:has_gender :suprem :male)
+
+# Individual: :vegeta (:vegeta)
+
+ClassAssertion(:sayan :vegeta)
+ObjectPropertyAssertion(:born_in :vegeta :vegeta_pl)
+ObjectPropertyAssertion(:fights_with :vegeta :martial_arts)
+ObjectPropertyAssertion(:has_father :vegeta :vegeta_senior)
+ObjectPropertyAssertion(:married_with :vegeta :bulma)
+ObjectPropertyAssertion(:sayan_fights_with :vegeta :super_sayan)
+DataPropertyAssertion(:has_trasformation :vegeta "3"^^xsd:integer)
+
+# Individual: :vegeta_pl (:vegeta_pl)
+
+ClassAssertion(:planet :vegeta_pl)
+
+# Individual: :vegeta_senior (:vegeta_senior)
+
+ClassAssertion(:sayan :vegeta_senior)
+ObjectPropertyAssertion(:born_in :vegeta_senior :vegeta_pl)
+ObjectPropertyAssertion(:father_of :vegeta_senior :vegeta)
+ObjectPropertyAssertion(:sayan_fights_with :vegeta_senior :martial_arts)
+
+
+DisjointClasses(:alien :android :human :nameccian :sayan)
+DifferentIndividuals(:earth :namec :vegeta_pl)
+DifferentIndividuals(:female :male)
+DifferentIndividuals(:vegeta :vegeta_pl)
+DifferentIndividuals(:vegeta :vegeta_senior)
+)
