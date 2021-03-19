@@ -10,10 +10,12 @@ Ontology(<http://www.semanticweb.org/theta/ontologies/2021/0/dragonball-ontology
 
 Declaration(Class(:alien))
 Declaration(Class(:android))
+Declaration(Class(:female))
 Declaration(Class(:fighting_technique))
 Declaration(Class(:gender))
 Declaration(Class(:human))
 Declaration(Class(:long_distance))
+Declaration(Class(:male))
 Declaration(Class(:nameccian))
 Declaration(Class(:planet))
 Declaration(Class(:power_up))
@@ -25,7 +27,6 @@ Declaration(ObjectProperty(:enemy_of))
 Declaration(ObjectProperty(:father_of))
 Declaration(ObjectProperty(:fights_with))
 Declaration(ObjectProperty(:has_father))
-Declaration(ObjectProperty(:has_gender))
 Declaration(ObjectProperty(:has_mother))
 Declaration(ObjectProperty(:has_parent))
 Declaration(ObjectProperty(:married_with))
@@ -48,7 +49,6 @@ Declaration(NamedIndividual(:chichi))
 Declaration(NamedIndividual(:crillin))
 Declaration(NamedIndividual(:dr_gelo))
 Declaration(NamedIndividual(:earth))
-Declaration(NamedIndividual(:female))
 Declaration(NamedIndividual(:finger_laser))
 Declaration(NamedIndividual(:frieza))
 Declaration(NamedIndividual(:gohan))
@@ -56,7 +56,6 @@ Declaration(NamedIndividual(:goku))
 Declaration(NamedIndividual(:goten))
 Declaration(NamedIndividual(:kaioken))
 Declaration(NamedIndividual(:kamehameha))
-Declaration(NamedIndividual(:male))
 Declaration(NamedIndividual(:marron))
 Declaration(NamedIndividual(:martial_arts))
 Declaration(NamedIndividual(:mr_satan))
@@ -107,13 +106,6 @@ ObjectPropertyRange(:fights_with :fighting_technique)
 
 SubObjectPropertyOf(:has_father :has_parent)
 SubObjectPropertyOf(:has_father ObjectInverseOf(:father_of))
-
-# Object Property: :has_gender (:has_gender)
-
-SubObjectPropertyOf(:has_gender owl:topObjectProperty)
-FunctionalObjectProperty(:has_gender)
-ObjectPropertyDomain(:has_gender :race)
-ObjectPropertyRange(:has_gender :gender)
 
 # Object Property: :has_mother (:has_mother)
 
@@ -198,6 +190,14 @@ SubClassOf(:alien :race)
 
 SubClassOf(:android :race)
 
+# Class: :female (:female)
+
+SubClassOf(:female :gender)
+DisjointClasses(:female :male)
+
+# Class: :fighting_technique (:fighting_technique)
+
+
 # Class: :human (:human)
 
 SubClassOf(:human :race)
@@ -207,9 +207,16 @@ SubClassOf(:human :race)
 SubClassOf(:long_distance :fighting_technique)
 DisjointClasses(:long_distance :short_distance)
 
+# Class: :male (:male)
+
+SubClassOf(:male :gender)
+
 # Class: :nameccian (:nameccian)
 
 SubClassOf(:nameccian :race)
+
+# Class: :planet (:planet)
+
 
 # Class: :power_up (:power_up)
 
@@ -217,7 +224,6 @@ SubClassOf(:power_up :fighting_technique)
 
 # Class: :race (:race)
 
-SubClassOf(:race ObjectExactCardinality(1 :has_gender :gender))
 
 # Class: :sayan (:sayan)
 
@@ -234,6 +240,7 @@ SubClassOf(:short_distance :fighting_technique)
 
 # Individual: :bardack (:bardack)
 
+ClassAssertion(:male :bardack)
 ClassAssertion(:sayan :bardack)
 ObjectPropertyAssertion(:born_in :bardack :vegeta_pl)
 ObjectPropertyAssertion(:enemy_of :bardack :frieza)
@@ -246,13 +253,14 @@ ClassAssertion(:long_distance :beam_cannon)
 
 # Individual: :bulma (:bulma)
 
+ClassAssertion(:female :bulma)
 ClassAssertion(:human :bulma)
 ObjectPropertyAssertion(:born_in :bulma :earth)
-ObjectPropertyAssertion(:has_gender :bulma :female)
 
 # Individual: :c16 (:c16)
 
 ClassAssertion(:android :c16)
+ClassAssertion(:male :c16)
 ObjectPropertyAssertion(:enemy_of :c16 :cell)
 ObjectPropertyAssertion(:fights_with :c16 :martial_arts)
 ObjectPropertyAssertion(:sibling_of :c16 :c17)
@@ -260,16 +268,16 @@ ObjectPropertyAssertion(:sibling_of :c16 :c17)
 # Individual: :c17 (:c17)
 
 ClassAssertion(:android :c17)
+ClassAssertion(:male :c17)
 ObjectPropertyAssertion(:fights_with :c17 :martial_arts)
-ObjectPropertyAssertion(:has_gender :c17 :male)
 ObjectPropertyAssertion(:sibling_of :c17 :c18)
 
 # Individual: :c18 (:c18)
 
 ClassAssertion(:android :c18)
+ClassAssertion(:female :c18)
 ObjectPropertyAssertion(:enemy_of :c18 :cell)
 ObjectPropertyAssertion(:fights_with :c18 :martial_arts)
-ObjectPropertyAssertion(:has_gender :c18 :female)
 ObjectPropertyAssertion(:married_with :c18 :crillin)
 ObjectPropertyAssertion(:mother_of :c18 :marron)
 ObjectPropertyAssertion(:sibling_of :c18 :c17)
@@ -277,6 +285,7 @@ ObjectPropertyAssertion(:sibling_of :c18 :c17)
 # Individual: :cell (:cell)
 
 ClassAssertion(:android :cell)
+ClassAssertion(:male :cell)
 ClassAssertion(ObjectSomeValuesFrom(:enemy_of :sayan) :cell)
 ObjectPropertyAssertion(:enemy_of :cell :gohan)
 ObjectPropertyAssertion(:enemy_of :cell :goku)
@@ -286,15 +295,16 @@ ObjectPropertyAssertion(:fights_with :cell :martial_arts)
 
 # Individual: :chichi (:chichi)
 
+ClassAssertion(:female :chichi)
 ClassAssertion(:human :chichi)
 ObjectPropertyAssertion(:born_in :chichi :earth)
 ObjectPropertyAssertion(:fights_with :chichi :martial_arts)
-ObjectPropertyAssertion(:has_gender :chichi :female)
 ObjectPropertyAssertion(:mother_of :chichi :goten)
 
 # Individual: :crillin (:crillin)
 
 ClassAssertion(:human :crillin)
+ClassAssertion(:male :crillin)
 ObjectPropertyAssertion(:born_in :crillin :earth)
 ObjectPropertyAssertion(:enemy_of :crillin :c17)
 ObjectPropertyAssertion(:enemy_of :crillin :cell)
@@ -302,12 +312,12 @@ ObjectPropertyAssertion(:enemy_of :crillin :frieza)
 ObjectPropertyAssertion(:father_of :crillin :marron)
 ObjectPropertyAssertion(:fights_with :crillin :kamehameha)
 ObjectPropertyAssertion(:fights_with :crillin :martial_arts)
-ObjectPropertyAssertion(:has_gender :crillin :male)
 DataPropertyAssertion(:has_child :crillin "1"^^xsd:integer)
 
 # Individual: :dr_gelo (:dr_gelo)
 
 ClassAssertion(:human :dr_gelo)
+ClassAssertion(:male :dr_gelo)
 ObjectPropertyAssertion(:born_in :dr_gelo :earth)
 ObjectPropertyAssertion(:father_of :dr_gelo :c16)
 ObjectPropertyAssertion(:father_of :dr_gelo :c17)
@@ -319,10 +329,6 @@ ObjectPropertyAssertion(:fights_with :dr_gelo :martial_arts)
 
 ClassAssertion(:planet :earth)
 
-# Individual: :female (:female)
-
-ClassAssertion(:gender :female)
-
 # Individual: :finger_laser (:finger_laser)
 
 ClassAssertion(:long_distance :finger_laser)
@@ -330,6 +336,7 @@ ClassAssertion(:long_distance :finger_laser)
 # Individual: :frieza (:frieza)
 
 ClassAssertion(:alien :frieza)
+ClassAssertion(:male :frieza)
 ClassAssertion(ObjectSomeValuesFrom(:enemy_of :human) :frieza)
 ClassAssertion(ObjectSomeValuesFrom(:enemy_of :sayan) :frieza)
 ObjectPropertyAssertion(:enemy_of :frieza :vegeta)
@@ -340,12 +347,12 @@ DataPropertyAssertion(:has_trasformation :frieza "4"^^xsd:integer)
 
 # Individual: :gohan (:gohan)
 
+ClassAssertion(:male :gohan)
 ClassAssertion(:sayan :gohan)
 ObjectPropertyAssertion(:born_in :gohan :earth)
 ObjectPropertyAssertion(:enemy_of :gohan :frieza)
 ObjectPropertyAssertion(:fights_with :gohan :kamehameha)
 ObjectPropertyAssertion(:fights_with :gohan :martial_arts)
-ObjectPropertyAssertion(:has_gender :gohan :male)
 ObjectPropertyAssertion(:has_mother :gohan :chichi)
 ObjectPropertyAssertion(:sayan_fights_with :gohan :super_sayan)
 ObjectPropertyAssertion(:sibling_of :gohan :goten)
@@ -353,6 +360,7 @@ DataPropertyAssertion(:has_trasformation :gohan "2"^^xsd:integer)
 
 # Individual: :goku (:goku)
 
+ClassAssertion(:male :goku)
 ClassAssertion(:sayan :goku)
 ObjectPropertyAssertion(:born_in :goku :vegeta_pl)
 ObjectPropertyAssertion(:enemy_of :goku :frieza)
@@ -361,17 +369,16 @@ ObjectPropertyAssertion(:father_of :goku :goten)
 ObjectPropertyAssertion(:fights_with :goku :kaioken)
 ObjectPropertyAssertion(:fights_with :goku :kamehameha)
 ObjectPropertyAssertion(:fights_with :goku :martial_arts)
-ObjectPropertyAssertion(:has_gender :goku :male)
 ObjectPropertyAssertion(:married_with :goku :chichi)
 ObjectPropertyAssertion(:sayan_fights_with :goku :super_sayan)
 
 # Individual: :goten (:goten)
 
+ClassAssertion(:male :goten)
 ClassAssertion(:sayan :goten)
 ObjectPropertyAssertion(:born_in :goten :earth)
 ObjectPropertyAssertion(:fights_with :goten :kamehameha)
 ObjectPropertyAssertion(:fights_with :goten :martial_arts)
-ObjectPropertyAssertion(:has_gender :goten :male)
 ObjectPropertyAssertion(:has_mother :goten :chichi)
 ObjectPropertyAssertion(:sayan_fights_with :goten :super_sayan)
 DataPropertyAssertion(:has_trasformation :goten "2"^^xsd:integer)
@@ -384,15 +391,11 @@ ClassAssertion(:power_up :kaioken)
 
 ClassAssertion(:long_distance :kamehameha)
 
-# Individual: :male (:male)
-
-ClassAssertion(:gender :male)
-
 # Individual: :marron (:marron)
 
+ClassAssertion(:female :marron)
 ClassAssertion(:human :marron)
 ObjectPropertyAssertion(:born_in :marron :earth)
-ObjectPropertyAssertion(:has_gender :marron :female)
 
 # Individual: :martial_arts (:martial_arts)
 
@@ -401,20 +404,20 @@ ClassAssertion(:short_distance :martial_arts)
 # Individual: :mr_satan (:mr_satan)
 
 ClassAssertion(:human :mr_satan)
+ClassAssertion(:male :mr_satan)
 ObjectPropertyAssertion(:born_in :mr_satan :earth)
 ObjectPropertyAssertion(:enemy_of :mr_satan :cell)
 ObjectPropertyAssertion(:father_of :mr_satan :videl)
 ObjectPropertyAssertion(:fights_with :mr_satan :martial_arts)
-ObjectPropertyAssertion(:has_gender :mr_satan :male)
 
 # Individual: :muten (:muten)
 
 ClassAssertion(:human :muten)
+ClassAssertion(:male :muten)
 ObjectPropertyAssertion(:born_in :muten :earth)
 ObjectPropertyAssertion(:enemy_of :muten :radish)
 ObjectPropertyAssertion(:fights_with :muten :kamehameha)
 ObjectPropertyAssertion(:fights_with :muten :martial_arts)
-ObjectPropertyAssertion(:has_gender :muten :male)
 ObjectPropertyAssertion(:teacher_of :muten :crillin)
 ObjectPropertyAssertion(:teacher_of :muten :goku)
 
@@ -424,18 +427,20 @@ ClassAssertion(:planet :namec)
 
 # Individual: :piccolo (:piccolo)
 
+ClassAssertion(:male :piccolo)
 ClassAssertion(:nameccian :piccolo)
+SameIndividual(:piccolo :suprem)
 ObjectPropertyAssertion(:born_in :piccolo :namec)
 ObjectPropertyAssertion(:enemy_of :piccolo :c17)
 ObjectPropertyAssertion(:enemy_of :piccolo :frieza)
 ObjectPropertyAssertion(:enemy_of :piccolo :vegeta)
 ObjectPropertyAssertion(:fights_with :piccolo :beam_cannon)
 ObjectPropertyAssertion(:fights_with :piccolo :martial_arts)
-ObjectPropertyAssertion(:has_gender :piccolo :male)
 ObjectPropertyAssertion(:teacher_of :piccolo :gohan)
 
 # Individual: :radish (:radish)
 
+ClassAssertion(:male :radish)
 ClassAssertion(:sayan :radish)
 ObjectPropertyAssertion(:born_in :radish :vegeta_pl)
 ObjectPropertyAssertion(:enemy_of :radish :gohan)
@@ -449,9 +454,9 @@ ClassAssertion(:power_up :super_sayan)
 
 # Individual: :suprem (:suprem)
 
+ClassAssertion(:male :suprem)
 ClassAssertion(:nameccian :suprem)
 ObjectPropertyAssertion(:born_in :suprem :namec)
-ObjectPropertyAssertion(:has_gender :suprem :male)
 
 # Individual: :sword (:sword)
 
@@ -460,20 +465,20 @@ ClassAssertion(:short_distance :sword)
 # Individual: :tensing (:tensing)
 
 ClassAssertion(:human :tensing)
+ClassAssertion(:male :tensing)
 ObjectPropertyAssertion(:born_in :tensing :earth)
 ObjectPropertyAssertion(:enemy_of :tensing :cell)
 ObjectPropertyAssertion(:enemy_of :tensing :vegeta)
 ObjectPropertyAssertion(:fights_with :tensing :martial_arts)
-ObjectPropertyAssertion(:has_gender :tensing :male)
 
 # Individual: :trunks (:trunks)
 
+ClassAssertion(:male :trunks)
 ClassAssertion(:sayan :trunks)
 ObjectPropertyAssertion(:born_in :trunks :earth)
 ObjectPropertyAssertion(:fights_with :trunks :martial_arts)
 ObjectPropertyAssertion(:fights_with :trunks :sword)
 ObjectPropertyAssertion(:has_father :trunks :vegeta)
-ObjectPropertyAssertion(:has_gender :trunks :male)
 ObjectPropertyAssertion(:has_mother :trunks :bulma)
 ObjectPropertyAssertion(:sayan_fights_with :trunks :super_sayan)
 ObjectPropertyAssertion(:teached_by :trunks :gohan)
@@ -481,11 +486,11 @@ DataPropertyAssertion(:has_trasformation :trunks "2"^^xsd:integer)
 
 # Individual: :vegeta (:vegeta)
 
+ClassAssertion(:male :vegeta)
 ClassAssertion(:sayan :vegeta)
 ObjectPropertyAssertion(:born_in :vegeta :vegeta_pl)
 ObjectPropertyAssertion(:fights_with :vegeta :martial_arts)
 ObjectPropertyAssertion(:has_father :vegeta :vegeta_senior)
-ObjectPropertyAssertion(:has_gender :vegeta :male)
 ObjectPropertyAssertion(:married_with :vegeta :bulma)
 ObjectPropertyAssertion(:sayan_fights_with :vegeta :super_sayan)
 DataPropertyAssertion(:has_trasformation :vegeta "3"^^xsd:integer)
@@ -503,6 +508,7 @@ ObjectPropertyAssertion(:sayan_fights_with :vegeta_senior :martial_arts)
 
 # Individual: :videl (:videl)
 
+ClassAssertion(:female :videl)
 ClassAssertion(:human :videl)
 ObjectPropertyAssertion(:born_in :videl :earth)
 ObjectPropertyAssertion(:enemy_of :videl :cell)
@@ -517,6 +523,7 @@ ClassAssertion(:short_distance :wolf_attack)
 # Individual: :yamcha (:yamcha)
 
 ClassAssertion(:human :yamcha)
+ClassAssertion(:male :yamcha)
 ObjectPropertyAssertion(:born_in :yamcha :earth)
 ObjectPropertyAssertion(:enemy_of :yamcha :cell)
 ObjectPropertyAssertion(:enemy_of :yamcha :vegeta)
@@ -525,8 +532,8 @@ ObjectPropertyAssertion(:fights_with :yamcha :wolf_attack)
 
 
 DisjointClasses(:alien :android :human :nameccian :sayan)
+DisjointClasses(:fighting_technique :planet :race)
 DifferentIndividuals(:earth :namec :vegeta_pl)
-DifferentIndividuals(:female :male)
 DifferentIndividuals(:vegeta :vegeta_pl)
 DifferentIndividuals(:vegeta :vegeta_senior)
 )
