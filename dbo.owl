@@ -86,6 +86,8 @@ IrreflexiveObjectProperty(:enemy_of)
 # Object Property: :father_of (:father_of)
 
 SubObjectPropertyOf(:father_of :parent_of)
+InverseObjectProperties(:father_of :has_father)
+InverseFunctionalObjectProperty(:father_of)
 ObjectPropertyRange(:father_of :race)
 
 # Object Property: :fights_with (:fights_with)
@@ -97,7 +99,7 @@ ObjectPropertyRange(:fights_with :fighting_technique)
 # Object Property: :has_father (:has_father)
 
 SubObjectPropertyOf(:has_father :has_parent)
-InverseFunctionalObjectProperty(:has_father)
+SubObjectPropertyOf(:has_father ObjectInverseOf(:father_of))
 
 # Object Property: :has_gender (:has_gender)
 
@@ -109,6 +111,7 @@ ObjectPropertyRange(:has_gender :gender)
 # Object Property: :has_mother (:has_mother)
 
 SubObjectPropertyOf(:has_mother :has_parent)
+InverseObjectProperties(:has_mother :mother_of)
 
 # Object Property: :has_parent (:has_parent)
 
@@ -125,6 +128,7 @@ ObjectPropertyRange(:married_with :race)
 # Object Property: :mother_of (:mother_of)
 
 SubObjectPropertyOf(:mother_of :parent_of)
+InverseFunctionalObjectProperty(:mother_of)
 ObjectPropertyRange(:mother_of :race)
 
 # Object Property: :parent_of (:parent_of)
@@ -370,9 +374,7 @@ ClassAssertion(:gender :male)
 
 ClassAssertion(:human :marron)
 ObjectPropertyAssertion(:born_in :marron :earth)
-ObjectPropertyAssertion(:has_father :marron :crillin)
 ObjectPropertyAssertion(:has_gender :marron :female)
-ObjectPropertyAssertion(:has_mother :marron :c18)
 
 # Individual: :martial_arts (:martial_arts)
 
