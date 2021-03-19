@@ -47,21 +47,26 @@ Declaration(NamedIndividual(:c18))
 Declaration(NamedIndividual(:cell))
 Declaration(NamedIndividual(:chichi))
 Declaration(NamedIndividual(:crillin))
+Declaration(NamedIndividual(:dende))
 Declaration(NamedIndividual(:dr_gelo))
 Declaration(NamedIndividual(:earth))
 Declaration(NamedIndividual(:finger_laser))
 Declaration(NamedIndividual(:frieza))
+Declaration(NamedIndividual(:garlic))
 Declaration(NamedIndividual(:gohan))
 Declaration(NamedIndividual(:goku))
 Declaration(NamedIndividual(:goten))
 Declaration(NamedIndividual(:kaioken))
 Declaration(NamedIndividual(:kamehameha))
+Declaration(NamedIndividual(:light_flash))
 Declaration(NamedIndividual(:marron))
 Declaration(NamedIndividual(:martial_arts))
 Declaration(NamedIndividual(:mr_satan))
 Declaration(NamedIndividual(:muten))
 Declaration(NamedIndividual(:namec))
+Declaration(NamedIndividual(:nappa))
 Declaration(NamedIndividual(:piccolo))
+Declaration(NamedIndividual(:popo))
 Declaration(NamedIndividual(:radish))
 Declaration(NamedIndividual(:super_sayan))
 Declaration(NamedIndividual(:suprem))
@@ -311,8 +316,17 @@ ObjectPropertyAssertion(:enemy_of :crillin :cell)
 ObjectPropertyAssertion(:enemy_of :crillin :frieza)
 ObjectPropertyAssertion(:father_of :crillin :marron)
 ObjectPropertyAssertion(:fights_with :crillin :kamehameha)
+ObjectPropertyAssertion(:fights_with :crillin :light_flash)
 ObjectPropertyAssertion(:fights_with :crillin :martial_arts)
 DataPropertyAssertion(:has_child :crillin "1"^^xsd:integer)
+
+# Individual: :dende (:dende)
+
+ClassAssertion(:male :dende)
+ClassAssertion(:nameccian :dende)
+ObjectPropertyAssertion(:born_in :dende :namec)
+ObjectPropertyAssertion(:sibling_of :dende :suprem)
+ObjectPropertyAssertion(:teached_by :dende :suprem)
 
 # Individual: :dr_gelo (:dr_gelo)
 
@@ -345,6 +359,14 @@ ObjectPropertyAssertion(:fights_with :frieza :finger_laser)
 ObjectPropertyAssertion(:fights_with :frieza :martial_arts)
 DataPropertyAssertion(:has_trasformation :frieza "4"^^xsd:integer)
 
+# Individual: :garlic (:garlic)
+
+ClassAssertion(:alien :garlic)
+ObjectPropertyAssertion(:enemy_of :garlic :crillin)
+ObjectPropertyAssertion(:enemy_of :garlic :dende)
+ObjectPropertyAssertion(:enemy_of :garlic :gohan)
+ObjectPropertyAssertion(:fights_with :garlic :martial_arts)
+
 # Individual: :gohan (:gohan)
 
 ClassAssertion(:male :gohan)
@@ -368,9 +390,12 @@ ObjectPropertyAssertion(:father_of :goku :gohan)
 ObjectPropertyAssertion(:father_of :goku :goten)
 ObjectPropertyAssertion(:fights_with :goku :kaioken)
 ObjectPropertyAssertion(:fights_with :goku :kamehameha)
+ObjectPropertyAssertion(:fights_with :goku :light_flash)
 ObjectPropertyAssertion(:fights_with :goku :martial_arts)
 ObjectPropertyAssertion(:married_with :goku :chichi)
 ObjectPropertyAssertion(:sayan_fights_with :goku :super_sayan)
+DataPropertyAssertion(:has_child :goku "2"^^xsd:integer)
+DataPropertyAssertion(:has_trasformation :goku "3"^^xsd:integer)
 
 # Individual: :goten (:goten)
 
@@ -390,6 +415,10 @@ ClassAssertion(:power_up :kaioken)
 # Individual: :kamehameha (:kamehameha)
 
 ClassAssertion(:long_distance :kamehameha)
+
+# Individual: :light_flash (:light_flash)
+
+ClassAssertion(:long_distance :light_flash)
 
 # Individual: :marron (:marron)
 
@@ -425,6 +454,16 @@ ObjectPropertyAssertion(:teacher_of :muten :goku)
 
 ClassAssertion(:planet :namec)
 
+# Individual: :nappa (:nappa)
+
+ClassAssertion(:male :nappa)
+ClassAssertion(:sayan :nappa)
+ObjectPropertyAssertion(:born_in :nappa :vegeta_pl)
+ObjectPropertyAssertion(:enemy_of :nappa :crillin)
+ObjectPropertyAssertion(:enemy_of :nappa :gohan)
+ObjectPropertyAssertion(:enemy_of :nappa :goku)
+ObjectPropertyAssertion(:enemy_of :nappa :piccolo)
+
 # Individual: :piccolo (:piccolo)
 
 ClassAssertion(:male :piccolo)
@@ -437,6 +476,10 @@ ObjectPropertyAssertion(:enemy_of :piccolo :vegeta)
 ObjectPropertyAssertion(:fights_with :piccolo :beam_cannon)
 ObjectPropertyAssertion(:fights_with :piccolo :martial_arts)
 ObjectPropertyAssertion(:teacher_of :piccolo :gohan)
+
+# Individual: :popo (:popo)
+
+ClassAssertion(:human :popo)
 
 # Individual: :radish (:radish)
 
@@ -469,6 +512,7 @@ ClassAssertion(:male :tensing)
 ObjectPropertyAssertion(:born_in :tensing :earth)
 ObjectPropertyAssertion(:enemy_of :tensing :cell)
 ObjectPropertyAssertion(:enemy_of :tensing :vegeta)
+ObjectPropertyAssertion(:fights_with :tensing :light_flash)
 ObjectPropertyAssertion(:fights_with :tensing :martial_arts)
 
 # Individual: :trunks (:trunks)
