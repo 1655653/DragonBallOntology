@@ -50,7 +50,10 @@ Declaration(DataProperty(:has_trasformation))
 Declaration(NamedIndividual(:babidi))
 Declaration(NamedIndividual(:bardack))
 Declaration(NamedIndividual(:beam_cannon))
+Declaration(NamedIndividual(:body_swap))
+Declaration(NamedIndividual(:bonyu))
 Declaration(NamedIndividual(:bulma))
+Declaration(NamedIndividual(:butter))
 Declaration(NamedIndividual(:c16))
 Declaration(NamedIndividual(:c17))
 Declaration(NamedIndividual(:c18))
@@ -65,20 +68,18 @@ Declaration(NamedIndividual(:dr_gelo))
 Declaration(NamedIndividual(:earth))
 Declaration(NamedIndividual(:finger_laser))
 Declaration(NamedIndividual(:frieza))
+Declaration(NamedIndividual(:frieza_team))
 Declaration(NamedIndividual(:fusion_dance))
 Declaration(NamedIndividual(:garlic))
 Declaration(NamedIndividual(:ginew))
-Declaration(NamedIndividual(:jeeth))
-Declaration(NamedIndividual(:butter))
-Declaration(NamedIndividual(:rikoom))
-Declaration(NamedIndividual(:guldo))
-Declaration(NamedIndividual(:bonyu))
 Declaration(NamedIndividual(:ginew_squad))
 Declaration(NamedIndividual(:gogeta))
 Declaration(NamedIndividual(:gohan))
 Declaration(NamedIndividual(:goku))
 Declaration(NamedIndividual(:goten))
 Declaration(NamedIndividual(:gotenks))
+Declaration(NamedIndividual(:guldo))
+Declaration(NamedIndividual(:jeeth))
 Declaration(NamedIndividual(:kaioken))
 Declaration(NamedIndividual(:kaioshin))
 Declaration(NamedIndividual(:kamehameha))
@@ -97,6 +98,7 @@ Declaration(NamedIndividual(:piccolo))
 Declaration(NamedIndividual(:popo))
 Declaration(NamedIndividual(:potara_earrings))
 Declaration(NamedIndividual(:radish))
+Declaration(NamedIndividual(:rikoom))
 Declaration(NamedIndividual(:super_sayan))
 Declaration(NamedIndividual(:suprem))
 Declaration(NamedIndividual(:supreme_power))
@@ -171,7 +173,6 @@ SubObjectPropertyOf(:has_father ObjectInverseOf(:father_of))
 
 InverseObjectProperties(:has_member :member_of)
 ObjectPropertyDomain(:has_member :fighting_team)
-ObjectPropertyRange(:has_member :race)
 
 # Object Property: :has_mother (:has_mother)
 
@@ -342,11 +343,33 @@ ObjectPropertyAssertion(:fights_with :bardack :martial_arts)
 
 ClassAssertion(:long_distance :beam_cannon)
 
+# Individual: :body_swap (:body_swap)
+
+ClassAssertion(:long_distance :body_swap)
+
+# Individual: :bonyu (:bonyu)
+
+ClassAssertion(:alien :bonyu)
+ClassAssertion(:male :bonyu)
+ObjectPropertyAssertion(:enemy_of :bonyu :crillin)
+ObjectPropertyAssertion(:enemy_of :bonyu :gohan)
+ObjectPropertyAssertion(:enemy_of :bonyu :piccolo)
+ObjectPropertyAssertion(:member_of :bonyu :ginew_squad)
+
 # Individual: :bulma (:bulma)
 
 ClassAssertion(:female :bulma)
 ClassAssertion(:human :bulma)
 ObjectPropertyAssertion(:born_in :bulma :earth)
+
+# Individual: :butter (:butter)
+
+ClassAssertion(:alien :butter)
+ClassAssertion(:male :butter)
+ObjectPropertyAssertion(:enemy_of :butter :crillin)
+ObjectPropertyAssertion(:enemy_of :butter :gohan)
+ObjectPropertyAssertion(:enemy_of :butter :piccolo)
+ObjectPropertyAssertion(:member_of :butter :ginew_squad)
 
 # Individual: :c16 (:c16)
 
@@ -468,6 +491,14 @@ ObjectPropertyAssertion(:fights_with :frieza :finger_laser)
 ObjectPropertyAssertion(:fights_with :frieza :martial_arts)
 DataPropertyAssertion(:has_trasformation :frieza "4"^^xsd:integer)
 
+# Individual: :frieza_team (:frieza_team)
+
+ClassAssertion(:fighting_team :frieza_team)
+ObjectPropertyAssertion(:has_member :frieza_team :dodoria)
+ObjectPropertyAssertion(:has_member :frieza_team :frieza)
+ObjectPropertyAssertion(:has_member :frieza_team :ginew_squad)
+ObjectPropertyAssertion(:has_member :frieza_team :zarbon)
+
 # Individual: :fusion_dance (:fusion_dance)
 
 ClassAssertion(:short_distance :fusion_dance)
@@ -489,53 +520,9 @@ ClassAssertion(:male :ginew)
 ObjectPropertyAssertion(:enemy_of :ginew :crillin)
 ObjectPropertyAssertion(:enemy_of :ginew :gohan)
 ObjectPropertyAssertion(:enemy_of :ginew :piccolo)
-ObjectPropertyAssertion(:member_of :ginew :ginew_squad)
+ObjectPropertyAssertion(:fights_with :ginew :body_swap)
 ObjectPropertyAssertion(:fights_with :ginew :martial_arts)
-
-# Individual: :jeeth (:jeeth)
-
-ClassAssertion(:alien :jeeth)
-ClassAssertion(:male :jeeth)
-ObjectPropertyAssertion(:enemy_of :jeeth :crillin)
-ObjectPropertyAssertion(:enemy_of :jeeth :gohan)
-ObjectPropertyAssertion(:enemy_of :jeeth :piccolo)
-ObjectPropertyAssertion(:member_of :jeeth :ginew_squad)
-
-# Individual: :butter (:butter)
-
-ClassAssertion(:alien :butter)
-ClassAssertion(:male :butter)
-ObjectPropertyAssertion(:enemy_of :butter :crillin)
-ObjectPropertyAssertion(:enemy_of :butter :gohan)
-ObjectPropertyAssertion(:enemy_of :butter :piccolo)
-ObjectPropertyAssertion(:member_of :butter :ginew_squad)
-
-# Individual: :rikoom (:rikoom)
-
-ClassAssertion(:alien :rikoom)
-ClassAssertion(:male :rikoom)
-ObjectPropertyAssertion(:enemy_of :rikoom :crillin)
-ObjectPropertyAssertion(:enemy_of :rikoom :gohan)
-ObjectPropertyAssertion(:enemy_of :rikoom :piccolo)
-ObjectPropertyAssertion(:member_of :rikoom :ginew_squad)
-
-# Individual: :guldo (:guldo)
-
-ClassAssertion(:alien :guldo)
-ClassAssertion(:male :guldo)
-ObjectPropertyAssertion(:enemy_of :guldo :crillin)
-ObjectPropertyAssertion(:enemy_of :guldo :gohan)
-ObjectPropertyAssertion(:enemy_of :guldo :piccolo)
-ObjectPropertyAssertion(:member_of :guldo :ginew_squad)
-
-# Individual: :bonyu (:bonyu)
-
-ClassAssertion(:alien :bonyu)
-ClassAssertion(:male :bonyu)
-ObjectPropertyAssertion(:enemy_of :bonyu :crillin)
-ObjectPropertyAssertion(:enemy_of :bonyu :gohan)
-ObjectPropertyAssertion(:enemy_of :bonyu :piccolo)
-ObjectPropertyAssertion(:member_of :bonyu :ginew_squad)
+ObjectPropertyAssertion(:member_of :ginew :ginew_squad)
 
 # Individual: :ginew_squad (:ginew_squad)
 
@@ -595,6 +582,24 @@ DataPropertyAssertion(:has_trasformation :goten "2"^^xsd:integer)
 ClassAssertion(:fusion :gotenks)
 ObjectPropertyAssertion(:fusion_of :gotenks :goten)
 ObjectPropertyAssertion(:fusion_of :gotenks :trunks)
+
+# Individual: :guldo (:guldo)
+
+ClassAssertion(:alien :guldo)
+ClassAssertion(:male :guldo)
+ObjectPropertyAssertion(:enemy_of :guldo :crillin)
+ObjectPropertyAssertion(:enemy_of :guldo :gohan)
+ObjectPropertyAssertion(:enemy_of :guldo :piccolo)
+ObjectPropertyAssertion(:member_of :guldo :ginew_squad)
+
+# Individual: :jeeth (:jeeth)
+
+ClassAssertion(:alien :jeeth)
+ClassAssertion(:male :jeeth)
+ObjectPropertyAssertion(:enemy_of :jeeth :crillin)
+ObjectPropertyAssertion(:enemy_of :jeeth :gohan)
+ObjectPropertyAssertion(:enemy_of :jeeth :piccolo)
+ObjectPropertyAssertion(:member_of :jeeth :ginew_squad)
 
 # Individual: :kaioken (:kaioken)
 
@@ -724,6 +729,15 @@ ObjectPropertyAssertion(:enemy_of :radish :gohan)
 ObjectPropertyAssertion(:enemy_of :radish :goku)
 ObjectPropertyAssertion(:fights_with :radish :martial_arts)
 ObjectPropertyAssertion(:sibling_of :radish :goku)
+
+# Individual: :rikoom (:rikoom)
+
+ClassAssertion(:alien :rikoom)
+ClassAssertion(:male :rikoom)
+ObjectPropertyAssertion(:enemy_of :rikoom :crillin)
+ObjectPropertyAssertion(:enemy_of :rikoom :gohan)
+ObjectPropertyAssertion(:enemy_of :rikoom :piccolo)
+ObjectPropertyAssertion(:member_of :rikoom :ginew_squad)
 
 # Individual: :super_sayan (:super_sayan)
 
