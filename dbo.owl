@@ -11,7 +11,9 @@ Ontology(<http://www.semanticweb.org/theta/ontologies/2021/0/dragonball-ontology
 Declaration(Class(:alien))
 Declaration(Class(:android))
 Declaration(Class(:female))
+Declaration(Class(:fighting_team))
 Declaration(Class(:fighting_technique))
+Declaration(Class(:fusion))
 Declaration(Class(:gender))
 Declaration(Class(:human))
 Declaration(Class(:long_distance))
@@ -26,10 +28,16 @@ Declaration(ObjectProperty(:born_in))
 Declaration(ObjectProperty(:enemy_of))
 Declaration(ObjectProperty(:father_of))
 Declaration(ObjectProperty(:fights_with))
+Declaration(ObjectProperty(:for_fusing))
+Declaration(ObjectProperty(:fused_in))
+Declaration(ObjectProperty(:fused_with))
+Declaration(ObjectProperty(:fusion_of))
 Declaration(ObjectProperty(:has_father))
+Declaration(ObjectProperty(:has_member))
 Declaration(ObjectProperty(:has_mother))
 Declaration(ObjectProperty(:has_parent))
 Declaration(ObjectProperty(:married_with))
+Declaration(ObjectProperty(:member_of))
 Declaration(ObjectProperty(:mother_of))
 Declaration(ObjectProperty(:parent_of))
 Declaration(ObjectProperty(:sayan_fights_with))
@@ -52,14 +60,20 @@ Declaration(NamedIndividual(:chocolate_transform))
 Declaration(NamedIndividual(:cooler))
 Declaration(NamedIndividual(:crillin))
 Declaration(NamedIndividual(:dende))
+Declaration(NamedIndividual(:dodoria))
 Declaration(NamedIndividual(:dr_gelo))
 Declaration(NamedIndividual(:earth))
 Declaration(NamedIndividual(:finger_laser))
 Declaration(NamedIndividual(:frieza))
+Declaration(NamedIndividual(:fusion_dance))
 Declaration(NamedIndividual(:garlic))
+Declaration(NamedIndividual(:ginew))
+Declaration(NamedIndividual(:ginew_squad))
+Declaration(NamedIndividual(:gogeta))
 Declaration(NamedIndividual(:gohan))
 Declaration(NamedIndividual(:goku))
 Declaration(NamedIndividual(:goten))
+Declaration(NamedIndividual(:gotenks))
 Declaration(NamedIndividual(:kaioken))
 Declaration(NamedIndividual(:kaioshin))
 Declaration(NamedIndividual(:kamehameha))
@@ -76,6 +90,7 @@ Declaration(NamedIndividual(:namec))
 Declaration(NamedIndividual(:nappa))
 Declaration(NamedIndividual(:piccolo))
 Declaration(NamedIndividual(:popo))
+Declaration(NamedIndividual(:potara_earrings))
 Declaration(NamedIndividual(:radish))
 Declaration(NamedIndividual(:super_sayan))
 Declaration(NamedIndividual(:suprem))
@@ -83,12 +98,14 @@ Declaration(NamedIndividual(:supreme_power))
 Declaration(NamedIndividual(:sword))
 Declaration(NamedIndividual(:tensing))
 Declaration(NamedIndividual(:trunks))
+Declaration(NamedIndividual(:veget))
 Declaration(NamedIndividual(:vegeta))
 Declaration(NamedIndividual(:vegeta_pl))
 Declaration(NamedIndividual(:vegeta_senior))
 Declaration(NamedIndividual(:videl))
 Declaration(NamedIndividual(:wolf_attack))
 Declaration(NamedIndividual(:yamcha))
+Declaration(NamedIndividual(:zarbon))
 ############################
 #   Object Properties
 ############################
@@ -117,10 +134,39 @@ AsymmetricObjectProperty(:fights_with)
 ObjectPropertyDomain(:fights_with :race)
 ObjectPropertyRange(:fights_with :fighting_technique)
 
+# Object Property: :for_fusing (:for_fusing)
+
+InverseObjectProperties(:for_fusing :fused_with)
+ObjectPropertyDomain(:for_fusing :fighting_technique)
+ObjectPropertyRange(:for_fusing :fusion)
+
+# Object Property: :fused_in (:fused_in)
+
+InverseObjectProperties(:fused_in :fusion_of)
+ObjectPropertyDomain(:fused_in :race)
+ObjectPropertyRange(:fused_in :fusion)
+
+# Object Property: :fused_with (:fused_with)
+
+ObjectPropertyDomain(:fused_with :fusion)
+ObjectPropertyRange(:fused_with :fighting_technique)
+
+# Object Property: :fusion_of (:fusion_of)
+
+SubObjectPropertyOf(:fusion_of owl:topObjectProperty)
+ObjectPropertyDomain(:fusion_of :fusion)
+ObjectPropertyRange(:fusion_of :race)
+
 # Object Property: :has_father (:has_father)
 
 SubObjectPropertyOf(:has_father :has_parent)
 SubObjectPropertyOf(:has_father ObjectInverseOf(:father_of))
+
+# Object Property: :has_member (:has_member)
+
+InverseObjectProperties(:has_member :member_of)
+ObjectPropertyDomain(:has_member :fighting_team)
+ObjectPropertyRange(:has_member :race)
 
 # Object Property: :has_mother (:has_mother)
 
@@ -138,6 +184,12 @@ SymmetricObjectProperty(:married_with)
 IrreflexiveObjectProperty(:married_with)
 ObjectPropertyDomain(:married_with :race)
 ObjectPropertyRange(:married_with :race)
+
+# Object Property: :member_of (:member_of)
+
+SubObjectPropertyOf(:member_of owl:topObjectProperty)
+ObjectPropertyDomain(:member_of :race)
+ObjectPropertyRange(:member_of :fighting_team)
 
 # Object Property: :mother_of (:mother_of)
 
@@ -218,6 +270,10 @@ DisjointClasses(:female :male)
 
 # Class: :fighting_technique (:fighting_technique)
 
+
+# Class: :fusion (:fusion)
+
+SubClassOf(:fusion :power_up)
 
 # Class: :human (:human)
 
@@ -367,6 +423,15 @@ ObjectPropertyAssertion(:born_in :dende :namec)
 ObjectPropertyAssertion(:sibling_of :dende :suprem)
 ObjectPropertyAssertion(:teached_by :dende :suprem)
 
+# Individual: :dodoria (:dodoria)
+
+ClassAssertion(:alien :dodoria)
+ClassAssertion(:male :dodoria)
+ObjectPropertyAssertion(:enemy_of :dodoria :crillin)
+ObjectPropertyAssertion(:enemy_of :dodoria :gohan)
+ObjectPropertyAssertion(:enemy_of :dodoria :piccolo)
+ObjectPropertyAssertion(:fights_with :dodoria :martial_arts)
+
 # Individual: :dr_gelo (:dr_gelo)
 
 ClassAssertion(:human :dr_gelo)
@@ -398,6 +463,12 @@ ObjectPropertyAssertion(:fights_with :frieza :finger_laser)
 ObjectPropertyAssertion(:fights_with :frieza :martial_arts)
 DataPropertyAssertion(:has_trasformation :frieza "4"^^xsd:integer)
 
+# Individual: :fusion_dance (:fusion_dance)
+
+ClassAssertion(:short_distance :fusion_dance)
+ObjectPropertyAssertion(:for_fusing :fusion_dance :gogeta)
+ObjectPropertyAssertion(:for_fusing :fusion_dance :gotenks)
+
 # Individual: :garlic (:garlic)
 
 ClassAssertion(:alien :garlic)
@@ -405,6 +476,25 @@ ObjectPropertyAssertion(:enemy_of :garlic :crillin)
 ObjectPropertyAssertion(:enemy_of :garlic :dende)
 ObjectPropertyAssertion(:enemy_of :garlic :gohan)
 ObjectPropertyAssertion(:fights_with :garlic :martial_arts)
+
+# Individual: :ginew (:ginew)
+
+ClassAssertion(:alien :ginew)
+ClassAssertion(:male :ginew)
+ObjectPropertyAssertion(:enemy_of :ginew :crillin)
+ObjectPropertyAssertion(:enemy_of :ginew :gohan)
+ObjectPropertyAssertion(:enemy_of :ginew :piccolo)
+ObjectPropertyAssertion(:member_of :ginew :ginew_squad)
+
+# Individual: :ginew_squad (:ginew_squad)
+
+ClassAssertion(:fighting_team :ginew_squad)
+
+# Individual: :gogeta (:gogeta)
+
+ClassAssertion(:fusion :gogeta)
+ObjectPropertyAssertion(:fusion_of :gogeta :goku)
+ObjectPropertyAssertion(:fusion_of :gogeta :vegeta)
 
 # Individual: :gohan (:gohan)
 
@@ -426,6 +516,7 @@ ClassAssertion(:male :goku)
 ClassAssertion(:sayan :goku)
 ObjectPropertyAssertion(:born_in :goku :vegeta_pl)
 ObjectPropertyAssertion(:enemy_of :goku :frieza)
+ObjectPropertyAssertion(:enemy_of :goku :vegeta)
 ObjectPropertyAssertion(:father_of :goku :gohan)
 ObjectPropertyAssertion(:father_of :goku :goten)
 ObjectPropertyAssertion(:fights_with :goku :kaioken)
@@ -447,6 +538,12 @@ ObjectPropertyAssertion(:fights_with :goten :martial_arts)
 ObjectPropertyAssertion(:has_mother :goten :chichi)
 ObjectPropertyAssertion(:sayan_fights_with :goten :super_sayan)
 DataPropertyAssertion(:has_trasformation :goten "2"^^xsd:integer)
+
+# Individual: :gotenks (:gotenks)
+
+ClassAssertion(:fusion :gotenks)
+ObjectPropertyAssertion(:fusion_of :gotenks :goten)
+ObjectPropertyAssertion(:fusion_of :gotenks :trunks)
 
 # Individual: :kaioken (:kaioken)
 
@@ -562,6 +659,11 @@ ObjectPropertyAssertion(:teacher_of :piccolo :gohan)
 
 ClassAssertion(:human :popo)
 
+# Individual: :potara_earrings (:potara_earrings)
+
+ClassAssertion(:short_distance :potara_earrings)
+ObjectPropertyAssertion(:for_fusing :potara_earrings :veget)
+
 # Individual: :radish (:radish)
 
 ClassAssertion(:male :radish)
@@ -613,6 +715,12 @@ ObjectPropertyAssertion(:sayan_fights_with :trunks :super_sayan)
 ObjectPropertyAssertion(:teached_by :trunks :gohan)
 DataPropertyAssertion(:has_trasformation :trunks "2"^^xsd:integer)
 
+# Individual: :veget (:veget)
+
+ClassAssertion(:fusion :veget)
+ObjectPropertyAssertion(:fusion_of :veget :goku)
+ObjectPropertyAssertion(:fusion_of :veget :vegeta)
+
 # Individual: :vegeta (:vegeta)
 
 ClassAssertion(:male :vegeta)
@@ -658,6 +766,14 @@ ObjectPropertyAssertion(:enemy_of :yamcha :cell)
 ObjectPropertyAssertion(:enemy_of :yamcha :vegeta)
 ObjectPropertyAssertion(:fights_with :yamcha :martial_arts)
 ObjectPropertyAssertion(:fights_with :yamcha :wolf_attack)
+
+# Individual: :zarbon (:zarbon)
+
+ClassAssertion(:alien :zarbon)
+ClassAssertion(:male :zarbon)
+ObjectPropertyAssertion(:enemy_of :zarbon :crillin)
+ObjectPropertyAssertion(:enemy_of :zarbon :gohan)
+ObjectPropertyAssertion(:enemy_of :zarbon :piccolo)
 
 
 DisjointClasses(:alien :android :human :nameccian :sayan)
