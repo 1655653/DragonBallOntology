@@ -34,10 +34,12 @@ Declaration(ObjectProperty(:mother_of))
 Declaration(ObjectProperty(:parent_of))
 Declaration(ObjectProperty(:sayan_fights_with))
 Declaration(ObjectProperty(:sibling_of))
+Declaration(ObjectProperty(:teach))
 Declaration(ObjectProperty(:teached_by))
 Declaration(ObjectProperty(:teacher_of))
 Declaration(DataProperty(:has_child))
 Declaration(DataProperty(:has_trasformation))
+Declaration(NamedIndividual(:babidi))
 Declaration(NamedIndividual(:bardack))
 Declaration(NamedIndividual(:beam_cannon))
 Declaration(NamedIndividual(:bulma))
@@ -46,6 +48,8 @@ Declaration(NamedIndividual(:c17))
 Declaration(NamedIndividual(:c18))
 Declaration(NamedIndividual(:cell))
 Declaration(NamedIndividual(:chichi))
+Declaration(NamedIndividual(:chocolate_transform))
+Declaration(NamedIndividual(:cooler))
 Declaration(NamedIndividual(:crillin))
 Declaration(NamedIndividual(:dende))
 Declaration(NamedIndividual(:dr_gelo))
@@ -57,8 +61,13 @@ Declaration(NamedIndividual(:gohan))
 Declaration(NamedIndividual(:goku))
 Declaration(NamedIndividual(:goten))
 Declaration(NamedIndividual(:kaioken))
+Declaration(NamedIndividual(:kaioshin))
 Declaration(NamedIndividual(:kamehameha))
+Declaration(NamedIndividual(:king_cold))
+Declaration(NamedIndividual(:king_kaio))
 Declaration(NamedIndividual(:light_flash))
+Declaration(NamedIndividual(:majiin_bu))
+Declaration(NamedIndividual(:majiin_vegeta))
 Declaration(NamedIndividual(:marron))
 Declaration(NamedIndividual(:martial_arts))
 Declaration(NamedIndividual(:mr_satan))
@@ -70,6 +79,7 @@ Declaration(NamedIndividual(:popo))
 Declaration(NamedIndividual(:radish))
 Declaration(NamedIndividual(:super_sayan))
 Declaration(NamedIndividual(:suprem))
+Declaration(NamedIndividual(:supreme_power))
 Declaration(NamedIndividual(:sword))
 Declaration(NamedIndividual(:tensing))
 Declaration(NamedIndividual(:trunks))
@@ -153,6 +163,12 @@ SymmetricObjectProperty(:sibling_of)
 TransitiveObjectProperty(:sibling_of)
 ObjectPropertyDomain(:sibling_of :race)
 ObjectPropertyRange(:sibling_of :race)
+
+# Object Property: :teach (:teach)
+
+AsymmetricObjectProperty(:teach)
+ObjectPropertyDomain(:teach :race)
+ObjectPropertyRange(:teach :fighting_technique)
 
 # Object Property: :teached_by (:teached_by)
 
@@ -243,6 +259,15 @@ SubClassOf(:short_distance :fighting_technique)
 #   Named Individuals
 ############################
 
+# Individual: :babidi (:babidi)
+
+ClassAssertion(:alien :babidi)
+ObjectPropertyAssertion(:enemy_of :babidi :gohan)
+ObjectPropertyAssertion(:enemy_of :babidi :goku)
+ObjectPropertyAssertion(:enemy_of :babidi :goten)
+ObjectPropertyAssertion(:enemy_of :babidi :trunks)
+ObjectPropertyAssertion(:enemy_of :babidi :vegeta)
+
 # Individual: :bardack (:bardack)
 
 ClassAssertion(:male :bardack)
@@ -305,6 +330,20 @@ ClassAssertion(:human :chichi)
 ObjectPropertyAssertion(:born_in :chichi :earth)
 ObjectPropertyAssertion(:fights_with :chichi :martial_arts)
 ObjectPropertyAssertion(:mother_of :chichi :goten)
+
+# Individual: :chocolate_transform (:chocolate_transform)
+
+ClassAssertion(:short_distance :chocolate_transform)
+
+# Individual: :cooler (:cooler)
+
+ClassAssertion(:alien :cooler)
+ClassAssertion(:male :cooler)
+ObjectPropertyAssertion(:enemy_of :cooler :goku)
+ObjectPropertyAssertion(:enemy_of :cooler :vegeta)
+ObjectPropertyAssertion(:fights_with :cooler :finger_laser)
+ObjectPropertyAssertion(:fights_with :cooler :martial_arts)
+ObjectPropertyAssertion(:sibling_of :cooler :frieza)
 
 # Individual: :crillin (:crillin)
 
@@ -375,6 +414,7 @@ ObjectPropertyAssertion(:born_in :gohan :earth)
 ObjectPropertyAssertion(:enemy_of :gohan :frieza)
 ObjectPropertyAssertion(:fights_with :gohan :kamehameha)
 ObjectPropertyAssertion(:fights_with :gohan :martial_arts)
+ObjectPropertyAssertion(:fights_with :gohan :supreme_power)
 ObjectPropertyAssertion(:has_mother :gohan :chichi)
 ObjectPropertyAssertion(:sayan_fights_with :gohan :super_sayan)
 ObjectPropertyAssertion(:sibling_of :gohan :goten)
@@ -412,13 +452,51 @@ DataPropertyAssertion(:has_trasformation :goten "2"^^xsd:integer)
 
 ClassAssertion(:power_up :kaioken)
 
+# Individual: :kaioshin (:kaioshin)
+
+ClassAssertion(:alien :kaioshin)
+ObjectPropertyAssertion(:teach :kaioshin :supreme_power)
+ObjectPropertyAssertion(:teacher_of :kaioshin :gohan)
+
 # Individual: :kamehameha (:kamehameha)
 
 ClassAssertion(:long_distance :kamehameha)
 
+# Individual: :king_cold (:king_cold)
+
+ClassAssertion(:alien :king_cold)
+ClassAssertion(:male :king_cold)
+ObjectPropertyAssertion(:father_of :king_cold :cooler)
+ObjectPropertyAssertion(:father_of :king_cold :frieza)
+
+# Individual: :king_kaio (:king_kaio)
+
+ClassAssertion(:alien :king_kaio)
+ObjectPropertyAssertion(:teach :king_kaio :kaioken)
+ObjectPropertyAssertion(:teacher_of :king_kaio :goku)
+
 # Individual: :light_flash (:light_flash)
 
 ClassAssertion(:long_distance :light_flash)
+
+# Individual: :majiin_bu (:majiin_bu)
+
+ClassAssertion(:alien :majiin_bu)
+ObjectPropertyAssertion(:enemy_of :majiin_bu :goku)
+ObjectPropertyAssertion(:enemy_of :majiin_bu :vegeta)
+ObjectPropertyAssertion(:fights_with :majiin_bu :chocolate_transform)
+ObjectPropertyAssertion(:fights_with :majiin_bu :martial_arts)
+ObjectPropertyAssertion(:has_father :majiin_bu :babidi)
+ObjectPropertyAssertion(:teached_by :majiin_bu :majiin_bu)
+DataPropertyAssertion(:has_trasformation :majiin_bu "3"^^xsd:integer)
+
+# Individual: :majiin_vegeta (:majiin_vegeta)
+
+ClassAssertion(:sayan :majiin_vegeta)
+SameIndividual(:majiin_vegeta :vegeta)
+ObjectPropertyAssertion(:enemy_of :majiin_vegeta :goku)
+ObjectPropertyAssertion(:teached_by :majiin_vegeta :babidi)
+DataPropertyAssertion(:has_trasformation :majiin_vegeta "1"^^xsd:integer)
 
 # Individual: :marron (:marron)
 
@@ -447,6 +525,7 @@ ObjectPropertyAssertion(:born_in :muten :earth)
 ObjectPropertyAssertion(:enemy_of :muten :radish)
 ObjectPropertyAssertion(:fights_with :muten :kamehameha)
 ObjectPropertyAssertion(:fights_with :muten :martial_arts)
+ObjectPropertyAssertion(:teach :muten :kamehameha)
 ObjectPropertyAssertion(:teacher_of :muten :crillin)
 ObjectPropertyAssertion(:teacher_of :muten :goku)
 
@@ -475,6 +554,8 @@ ObjectPropertyAssertion(:enemy_of :piccolo :frieza)
 ObjectPropertyAssertion(:enemy_of :piccolo :vegeta)
 ObjectPropertyAssertion(:fights_with :piccolo :beam_cannon)
 ObjectPropertyAssertion(:fights_with :piccolo :martial_arts)
+ObjectPropertyAssertion(:teach :piccolo :martial_arts)
+ObjectPropertyAssertion(:teached_by :piccolo :piccolo)
 ObjectPropertyAssertion(:teacher_of :piccolo :gohan)
 
 # Individual: :popo (:popo)
@@ -500,6 +581,10 @@ ClassAssertion(:power_up :super_sayan)
 ClassAssertion(:male :suprem)
 ClassAssertion(:nameccian :suprem)
 ObjectPropertyAssertion(:born_in :suprem :namec)
+
+# Individual: :supreme_power (:supreme_power)
+
+ClassAssertion(:power_up :supreme_power)
 
 # Individual: :sword (:sword)
 
