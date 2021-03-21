@@ -1,0 +1,62 @@
+----------------DL_QUERIES
+born_in value earth and member_of value z_warrior and not human
+
+
+enemy_of value goku and enemy_of value vegeta and  (killed_by value goku or killed_by value vegeta)
+
+
+
+-------------------INCOSTINCENCIES
+-married with è irreflexive quindi puoi non fare chichi married with chichi
+-born in è funzionale quindi non puoi fare crili born in eart e crili born in namec
+-c18 non è "nata" quindi non puoi fare c18 born in earth
+
+
+
+
+
+------------------SPARQL
+********************TUTTI I SAYAN************************************
+PREFIX  :  <http://www.semanticweb.org/theta/ontologies/2021/0/dragonball-ontology-17#>
+SELECT ?y 
+WHERE
+ { 
+                  ?x rdfs:subClassOf*  :sayan . 
+                  ?y rdf:type ?x . 
+                  
+}
+********************UMANI CHE COMBATTONO CON QUALCOSA************************************
+SELECT distinct ?y ?d
+WHERE
+ { 
+                  ?x rdfs:subClassOf*  :human . 
+                  ?y rdf:type ?x . 
+                  ?y  :fights_with  ?d.
+                                 
+}
+********************NON UMANI CHE COMBATTONO CON LE ARTI MARZIALI************************************
+SELECT distinct ?y ?d
+WHERE
+ { 	
+                  ?x rdfs:subClassOf*  :race . 
+                  ?y rdf:type ?x . 
+                  ?y  :fights_with  :martial_arts.
+                  MINUS {?x rdfs:subClassOf*  :human} 
+}
+********************NON UMANI CHE COMBATTONO CON LE ARTI MARZIALI E SONO SCONFITTI DA GOKU************************************
+SELECT distinct ?y ?d
+WHERE
+ { 	
+                  ?x rdfs:subClassOf*  :race . 
+                  ?y rdf:type ?x . 
+                  ?y  :fights_with  :martial_arts.
+                  MINUS {?x rdfs:subClassOf*  :human} 
+                  ?y :killed_by ?d
+}
+********************
+SELECT ?subject 
+	WHERE { ?subject :married_with  ?object} 
+****************
+SELECT ?subject ?object
+	WHERE { ?subject rdfs:subClassOf  ?object}
+******************
