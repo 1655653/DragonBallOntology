@@ -34,6 +34,7 @@ WHERE
                   ?y  :fights_with  ?d.
                                  
 }
+ORDER BY ?y
 ********************NON UMANI CHE COMBATTONO CON LE ARTI MARZIALI************************************
 SELECT distinct ?y ?d
 WHERE

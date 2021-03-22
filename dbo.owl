@@ -175,6 +175,7 @@ ObjectPropertyRange(:fusion_of :race)
 
 SubObjectPropertyOf(:has_father :has_parent)
 SubObjectPropertyOf(:has_father ObjectInverseOf(:father_of))
+FunctionalObjectProperty(:has_father)
 
 # Object Property: :has_member (:has_member)
 
@@ -517,7 +518,7 @@ ObjectPropertyAssertion(:father_of :dr_gelo :c17)
 ObjectPropertyAssertion(:father_of :dr_gelo :c18)
 ObjectPropertyAssertion(:father_of :dr_gelo :cell)
 ObjectPropertyAssertion(:fights_with :dr_gelo :martial_arts)
-ObjectPropertyAssertion(:killed_by :dr_gelo :dr_gelo)
+ObjectPropertyAssertion(:killed_by :dr_gelo :cell)
 
 # Individual: :earth (:earth)
 
