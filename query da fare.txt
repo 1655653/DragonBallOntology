@@ -54,6 +54,16 @@ WHERE
                   MINUS {?x rdfs:subClassOf*  :human} 
                   ?y :killed_by ?d
 }
+********************PATH NEMICI
+SELECT ?y ?z
+WHERE
+ { 
+                  ?x rdfs:subClassOf*  :race . 
+                  ?y rdf:type ?x . 
+                  ?y :enemy_of+ ?z.
+                  ----->MINUS {?y :enemy_of ?z}
+}
+ORDER BY ?y
 ********************
 SELECT ?subject 
 	WHERE { ?subject :married_with  ?object} 
